@@ -1,0 +1,315 @@
+<html>
+    <head>
+        <title>know Yourself</title>
+        <style>
+            header{
+                color: bisque;
+                text-align: center;
+                border-radius: 10px;
+                background-color:#a788cb ;
+                height: 5rem;
+              
+            }
+            h1{
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                padding-top:16px ;
+                margin-bottom: -22px;
+                
+            }
+            h1 .one{
+                color:#e1e247 ;
+            }
+            h1 .two{
+                color:#0d2bcb;
+            }
+            h4{
+                color: black;
+                font-family:Arial, Helvetica, sans-serif;
+            }
+            .game-body{
+                margin:1rem;
+                margin-top: 2px;
+                height:35rem ;
+                width: 100vw-200px ;
+                border-radius: 10px;
+                background:url('./images/galaxy2.gif');
+                background-size: cover;
+            }
+            /* styling the image */
+            p img{
+                height:150px;
+                width: 150px;
+                cursor: pointer;
+                display: none;
+                position: absolute;
+                left:0;
+                top:0;
+            }
+            
+            .score-container{
+                position: absolute;
+                width: 40rem;
+                height: 300px;
+                background:url('./images/galaxy2.jpg');
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                margin:1rem;
+                border-radius: 10px;
+                left:24%;
+                top:44%;
+                text-align: center;
+                color: white;
+                display: none;
+                overflow:hidden;
+            }
+            #stop-button{
+                margin-top:5px;
+                width:8%;
+                height: 25px;
+                border-radius: 15px;
+                border: none;
+                background-color: #8ada1e;
+                margin:1px auto;
+                font-weight: bolder;
+                color: white;
+                cursor: pointer;
+                font-family:Georgia, 'Times New Roman', Times, serif;
+            }
+            #start-button{
+                margin-top:5px;
+                width:8%;
+                height: 25px;
+                border-radius: 15px;
+                border: none;
+                background-color: #8ada1e;
+                margin:1px auto;
+                margin-left: 1rem;
+                font-weight: bolder;
+                color: white;
+                cursor: pointer;
+                font-family:Georgia, 'Times New Roman', Times, serif;
+            }
+            #start-button:hover,#stop-button:hover{
+                background-color: #a788cb;
+            }
+
+            #info-planet{
+                position: absolute;
+                width: 40rem;
+                height: 450px;
+                background-color: black;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                margin:1rem;
+                border-radius: 10px;
+                left:24%;
+                top:20%;
+                text-align: center;
+                color: white;
+                overflow:hidden;
+                list-style-position:outside;
+                display: none;
+            }
+            #info-close{
+                padding:10px;
+                width:20%;
+                border: none;
+                background-color: #8ada1e;
+                color: black;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            /* styling the staellites */
+            .sat-image{
+                height: 150px;
+                width: 150px;
+                
+            }
+            #game-over{
+                position: absolute;
+                width: 40rem;
+                height: 450px;
+                background-color: black;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                margin:1rem;
+                border-radius: 10px;
+                left:24%;
+                top:20%;
+                text-align: center;
+                color: white;
+                overflow:hidden;
+                display: none;
+                
+            }
+            #over-img{
+                height:200px;
+                width: 200px;
+                margin:1px auto;
+            }
+            .info-close{
+                padding:10px;
+                width:20%;
+                border: none;
+                background-color: #8ada1e;
+                color: black;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+         
+        </style>
+        <script>
+            let count = 0;
+            let fire = 0;
+            let water = 0;
+            let earth = 0;
+            function stopGame(){
+              location.reload();
+                        }
+                        function showSat2(){
+                            let w = Math.floor(Math.random() * 1000);
+                            let h = Math.floor(Math.random() * 500);
+                            let sat1 = document.getElementById('sat2');
+                            sat1.style.display = "block";
+                            sat1.style.left = w;
+                            sat1.style.top = h;
+                        }
+                        function showSat(){
+                            let w = Math.floor(Math.random() * 1000);
+                            let h = Math.floor(Math.random() * 500);
+                            let sat1 = document.getElementById('sat1');
+                            sat1.style.display = "block";
+                            sat1.style.left = w;
+                            sat1.style.top = h;
+                            setTimeout(showSat2,800);
+                        }
+                        
+//displaying image and moving it across the page
+                function showFire(){
+                    let scoreBox = document.getElementById('score-box');
+                    let allImage = document.getElementsByTagName('img');
+                    let fireImage = document.getElementById('fire-image');
+                    let w = Math.floor(Math.random() * 1000);
+                    let h = Math.floor(Math.random() * 500);
+                    if(count === 20){
+                    allImage[0].style.display = "none"; 
+                    allImage[1].style.display = "none"; 
+                    allImage[2].style.display = "none"; 
+                    allImage[3].style.display = "none"; 
+                    scoreBox.style.display = "block";
+                    return;
+                      
+                    }
+                    fireImage.style.display = "block";
+                    fireImage.src = "./images/fire.png";
+                    ShowWater();
+                    ShowEarth();
+                    showSat();
+
+                    fireImage.style.left = w;
+                    fireImage.style.top = h;
+                    count++;
+                    // console.log(count);
+                   r =  setTimeout(showFire,1000);
+
+                }
+                function ShowWater(){
+                    let waterImage = document.getElementById('water-image');
+                    let w = Math.floor(Math.random() * 1000);
+                    let h = Math.floor(Math.random() * 500);
+                    waterImage.src = "./images/water.png";
+                    waterImage.style.display = "block";
+                    waterImage.style.left = w;
+                    waterImage.style.top = h;
+
+                }
+                function ShowEarth(){
+                    let earthImage = document.getElementById('earth-image');
+                    let w = Math.floor(Math.random() * 1000);
+                    let h = Math.floor(Math.random() * 500);
+                    earthImage.src = "./images/earth.png";
+                    earthImage.style.display = "block";
+                    earthImage.style.left = w;
+                    earthImage.style.top = h;
+
+                }
+
+                // updateing the scores of elements
+                function updateFire(){
+                    let fireScore = document.getElementById('fire-score');
+                    fire++;
+                    fireScore.innerHTML = "<h4 style='color:white;'>" + fire + "</h4>";
+                    earthScore.style.color = "white";
+                }
+                function updateWater(){
+                    let waterScore = document.getElementById('water-score');
+                    waterScore.style.color = "white";
+                    water++;
+                    console.log(water);
+                    waterScore.innerHTML = "<h4 style='color:white;'>" + water + "</h4>";
+                }
+                function updateEarth(){
+                    let earthScore = document.getElementById('earth-score');
+                    earthScore.style.color = "white";
+                    earth++;
+                    earthScore.innerHTML = "<h4 style='color:white;'>" + earth + "</h4>";
+                }
+                function showInfo(){
+                    let infoScreen = document.getElementById('info-planet');
+                    infoScreen.style.display = "block";
+                }
+                function closeInfo(){
+                    let infoScreen = document.getElementById('info-planet');
+                    infoScreen.style.display = "none";
+                }
+                // Game over page
+                function gameOver(){
+                    let scoreBox = document.getElementById('score-box');
+                    let gameOver = document.getElementById('game-over');
+                    gameOver.style.display = "block";
+                    scoreBox.style.display = "block";
+                    count = 20;
+                }
+
+        </script>
+    </head>
+
+    <body onload="showInfo()">
+       <header>
+        <h1><span class="one">Galaxy  </span><span class="two">Score</span> </h1>
+        <h4>click on the planets , score as much as you can.</h4>
+       </header>
+       <button  onclick="showFire()" id="start-button">Start</button>
+       <button  onclick="stopGame()" id="stop-button">Reload</button>
+       <p class="game-body">
+        <img onclick="updateFire()" id="fire-image" src="">
+        <img onclick="updateWater()" id="water-image" src="">
+        <img onclick="updateEarth()" id="earth-image" src=""> 
+        <img onclick="gameOver()" id="sat1" class="sat-image" src="./images/satellite1.png">
+        <img onclick="gameOver()" id="sat2"  class="sat-image" src="./images/satellite2.png">
+        <img id="sat3" class="sat-image" src="./images/staellite3.png">
+       </p>
+            <div id="score-box" class="score-container">
+                <h2>your score is:</h2>
+                <div><h3>Saturn:</h3></div>
+                <div id="fire-score"></div>
+                <div><h3>Jupiter:</h3></div>
+                <div id="water-score"></div>
+                <div><h3>Earth:</h3></div>
+                <div id="earth-score"></div>
+            </div>
+            <div id="info-planet">
+                <h2>Instruction About the game</h2>
+                <ul>
+                    <li><h3>we have three planets Earth,Jupiter,Saturn moving in the galaxy.</h3></li>
+                    <li><h3>The more you click the more you score </h3></li>
+                    <li><h3>But wait!!  ther are satellites too avoid them. </h3></li>
+
+                    <button onclick="closeInfo()" id="info-close">close</button>
+                </ul>
+            </div>
+            <div id="game-over">
+                <img id="over-img" src="./images/gameover.png">
+                <p><h3>You hit one of the satellite.</h3></p>
+                <button onclick="stopGame()" class="info-close">Restart</button>
+            </div>
+            
+    </body>
+</html>
